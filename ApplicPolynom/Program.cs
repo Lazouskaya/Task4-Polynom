@@ -13,18 +13,11 @@ namespace ApplicPolynom
         {
             Polynom a=new Polynom(1,2,3,4,5);
             Polynom b = new Polynom(1, 2, 3);
-            Polynom c = a + b;
-            foreach (double koeff in c.Koeff)
-            {
-                Console.WriteLine(koeff);
-            }
-            Console.WriteLine();
-            c = a - b;
-            foreach (double koeff in c.Koeff)
-            {
-                Console.WriteLine(koeff);
-            }
-            Console.ReadKey();
+            Polynom c = a - b;
+         
+                Console.WriteLine(c.ToString());
+                Console.WriteLine(a.ToString());
+                Console.WriteLine(b.ToString());
             Console.ReadKey();
             
         }
