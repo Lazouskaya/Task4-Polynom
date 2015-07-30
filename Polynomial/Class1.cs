@@ -84,12 +84,12 @@ namespace Polynomial
 
         public static bool operator ==(Polynom a, Polynom b)
         {
-            return a.Equals(b);
+            return  ReferenceEquals(a,b);
         }
 
         public static bool operator !=(Polynom a, Polynom b)
         {
-            return !a.Equals(b);
+            return !ReferenceEquals(a,b);
         }
         public object Clone()
         {
