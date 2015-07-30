@@ -12,12 +12,10 @@ namespace ApplicPolynom
         static void Main(string[] args)
         {
             Polynom a=new Polynom(1,2,3,4,5);
-            Polynom b = new Polynom(1, 2, 3);
-            Polynom c = a - b;
+            Polynom b = new Polynom(1, 2, 3,4,5);
+            Polynom c = a * b;
          
-                Console.WriteLine(c.ToString());
-                Console.WriteLine(a.ToString());
-                Console.WriteLine(b.ToString());
+                Console.WriteLine(ReferenceEquals(a,b));
             Console.ReadKey();
             
         }

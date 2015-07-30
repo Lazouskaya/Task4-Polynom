@@ -22,7 +22,7 @@ namespace Polynomial
             {
                 return koeff[index];
             }
-            set { koeff[index] = value; }
+            //set { koeff[index] = value; }
         }   
 
         public static Polynom operator +(Polynom a, Polynom b)
@@ -37,14 +37,14 @@ namespace Polynomial
                 less = b; }
             Polynom sum = (Polynom)greater.Clone();
             for (int i = 0; i <= less.degree; i++)
-            { sum[i] += less[i];}
+            { sum.koeff[i] += less[i];}
             return sum;
         }
 
         public static Polynom operator +(Polynom a, double num)
         {
             Polynom newPolynom = (Polynom) a.Clone();
-            newPolynom[newPolynom.degree + 1] += num;
+            newPolynom.koeff[newPolynom.degree + 1] += num;
             return newPolynom;
         }
 
@@ -64,11 +64,33 @@ namespace Polynomial
             Polynom newPolynom = (Polynom) a.Clone();
             for (int i = 0; i <= a.degree; i++)
             {
-                newPolynom[i] *= num;
+                newPolynom.koeff[i] *= num;
             }
             return newPolynom;
         }
 
+        public static Polynom operator *(Polynom a, Polynom b)
+        {
+            double[] newKoeff = new double[a.degree+b.degree+1] ;
+            for (int i = 0; i <= a.degree; i++)
+            {
+                for (int j = 0; j <= b.degree; j++)
+                {
+                    newKoeff[i + j] += a[i]*b[j];
+                }
+            }
+            return new Polynom(newKoeff);
+        }
+
+        public static bool operator ==(Polynom a, Polynom b)
+        {
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(Polynom a, Polynom b)
+        {
+            return !a.Equals(b);
+        }
         public object Clone()
         {
             Polynom newPolynom = (Polynom) this.MemberwiseClone();
@@ -81,9 +103,40 @@ namespace Polynomial
             return newPolynom;
         }
 
+        public override bool Equals(Object obj)
+        {
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(obj, null))
+            {
+                return false;
+            }
+
+            Polynom polynom = obj as Polynom;
+            return Equals(polynom);
+        }
+
         public bool Equals(Polynom other)
         {
-            throw new NotImplementedException();
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+
+            return this.koeff.Length == other.koeff.Length && this.koeff.SequenceEqual(other.koeff);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public override String ToString()
@@ -95,6 +148,16 @@ namespace Polynomial
                 else
                     sb.Append(string.Format("{0}x^{1} + ", this[i], this.degree - i));
             return sb.ToString();
+        }
+
+        public double Calculate(double x)
+        {
+            double value = 0;
+            for (int i = 0; i <=this.degree ; i++)
+            {
+                value +=this[i]* Math.Pow(x, degree-i);
+            }
+            return value;
         }
     }
 }
