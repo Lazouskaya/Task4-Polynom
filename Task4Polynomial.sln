@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynomial", "Polynomial\Polynomial.csproj", "{18C7E4CB-C466-40C2-8CCD-935D01E94025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicPolynom", "ApplicPolynom\ApplicPolynom.csproj", "{D40294A0-9022-4E34-9EF4-152DA57E0DFB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{18C7E4CB-C466-40C2-8CCD-935D01E94025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18C7E4CB-C466-40C2-8CCD-935D01E94025}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18C7E4CB-C466-40C2-8CCD-935D01E94025}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D40294A0-9022-4E34-9EF4-152DA57E0DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D40294A0-9022-4E34-9EF4-152DA57E0DFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D40294A0-9022-4E34-9EF4-152DA57E0DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D40294A0-9022-4E34-9EF4-152DA57E0DFB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
