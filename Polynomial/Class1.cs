@@ -8,12 +8,15 @@ namespace Polynomial
 {
     public class Polynom:ICloneable,IEquatable<Polynom>
     {
-        public double[] koeff;
-        private int degree;
+        private double[] koeff;
+
+        public int Degree
+        {
+            get { return koeff.Length - 1; }
+        }
         public Polynom(params double[] koefficients)
         {
             koeff= koefficients;
-            degree = koefficients.Length-1;
         }
 
         public double this[int index]
@@ -29,14 +32,14 @@ namespace Polynomial
         {
             Polynom greater;
             Polynom less;
-            if (a.degree < b.degree){
+            if (a.Degree < b.Degree){
                 less = a;
                 greater = b;}
             else{
                 greater = a;
                 less = b; }
             Polynom sum = (Polynom)greater.Clone();
-            for (int i = 0; i <= less.degree; i++)
+            for (int i = 0; i <= less.Degree; i++)
             { sum.koeff[i] += less[i];}
             return sum;
         }
@@ -44,7 +47,7 @@ namespace Polynomial
         public static Polynom operator +(Polynom a, double num)
         {
             Polynom newPolynom = (Polynom) a.Clone();
-            newPolynom.koeff[newPolynom.degree + 1] += num;
+            newPolynom.koeff[newPolynom.Degree + 1] += num;
             return newPolynom;
         }
 
@@ -62,7 +65,7 @@ namespace Polynomial
         public static Polynom operator *(Polynom a, double num)
         {
             Polynom newPolynom = (Polynom) a.Clone();
-            for (int i = 0; i <= a.degree; i++)
+            for (int i = 0; i <= a.Degree; i++)
             {
                 newPolynom.koeff[i] *= num;
             }
@@ -71,10 +74,10 @@ namespace Polynomial
 
         public static Polynom operator *(Polynom a, Polynom b)
         {
-            double[] newKoeff = new double[a.degree+b.degree+1] ;
-            for (int i = 0; i <= a.degree; i++)
+            double[] newKoeff = new double[a.Degree+b.Degree+1] ;
+            for (int i = 0; i <= a.Degree; i++)
             {
-                for (int j = 0; j <= b.degree; j++)
+                for (int j = 0; j <= b.Degree; j++)
                 {
                     newKoeff[i + j] += a[i]*b[j];
                 }
@@ -94,8 +97,8 @@ namespace Polynomial
         public object Clone()
         {
             Polynom newPolynom = (Polynom) this.MemberwiseClone();
-            double[] koefficients = new double[this.degree+1];
-            for (int i = 0; i <= this.degree; i++)
+            double[] koefficients = new double[this.Degree+1];
+            for (int i = 0; i <= this.Degree; i++)
             {
                 koefficients[i] = this[i];
             }
@@ -142,20 +145,20 @@ namespace Polynomial
         public override String ToString()
         {
             StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < this.degree+1; i++)
-                if (i == this.degree)
+            for (int i = 0; i < this.Degree+1; i++)
+                if (i == this.Degree)
                     sb.Append(string.Format("{0}", this[i]));
                 else
-                    sb.Append(string.Format("{0}x^{1} + ", this[i], this.degree - i));
+                    sb.Append(string.Format("{0}x^{1} + ", this[i], this.Degree - i));
             return sb.ToString();
         }
 
         public double Calculate(double x)
         {
             double value = 0;
-            for (int i = 0; i <=this.degree ; i++)
+            for (int i = 0; i <=this.Degree ; i++)
             {
-                value +=this[i]* Math.Pow(x, degree-i);
+                value +=this[i]* Math.Pow(x, Degree-i);
             }
             return value;
         }
