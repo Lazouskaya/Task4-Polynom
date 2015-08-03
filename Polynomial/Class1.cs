@@ -25,7 +25,7 @@ namespace Polynomial
             {
                 return koeff[index];
             }
-            //set { koeff[index] = value; }
+            private set { koeff[index] = value; }
         }   
 
         public static Polynom operator +(Polynom a, Polynom b)
@@ -94,10 +94,15 @@ namespace Polynomial
         {
             return !ReferenceEquals(a,b);
         }
-        public object Clone()
+        object ICloneable.Clone()
         {
-            Polynom newPolynom = (Polynom) this.MemberwiseClone();
-            double[] koefficients = new double[this.Degree+1];
+            return this.Clone();
+        }
+
+        public Polynom Clone()
+        {
+            Polynom newPolynom = (Polynom)this.MemberwiseClone();
+            double[] koefficients = new double[this.Degree + 1];
             for (int i = 0; i <= this.Degree; i++)
             {
                 koefficients[i] = this[i];
