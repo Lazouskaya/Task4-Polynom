@@ -101,14 +101,8 @@ namespace Polynomial
 
         public Polynom Clone()
         {
-            Polynom newPolynom = (Polynom)this.MemberwiseClone();
-            double[] koefficients = new double[this.Degree + 1];
-            for (int i = 0; i <= this.Degree; i++)
-            {
-                koefficients[i] = this[i];
-            }
-            newPolynom.koeff = koefficients;
-            return newPolynom;
+           
+            return new Polynom(this.koeff);
         }
 
         public override bool Equals(Object obj)
